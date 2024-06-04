@@ -1,0 +1,32 @@
+<mat-toolbar class="mat-primary mat-toolbar-single-row mat-elevatmat-z8 color-barra" color="background">
+  <img src="../../../assets/images/flag.png" height="60px">
+  Festivos en Colombia
+</mat-toolbar>
+
+<form action="">
+  <section class="gap">
+    <mat-form-field>
+      <mat-label>Seleccionar Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="selectedDate" readonly>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]=" picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="verifyHoliday()">Validar Fecha</button>
+  </section>
+
+  <section>
+    <mat-form-field class="example-full-width">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" name="enteredYear" [(ngModel)]="enteredYear">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="getFestivos()">Obtener Festivos</button>
+
+    <ngx-datatable class="dark" [headerHeight]="50" [footerHeight]="50" [rowHeight]="20" [rows]="festivos"
+      [columns]="columns" [columnMode]="columnMode.force" [limit]="10" [selectionType]="selecionType.single"
+      (activate)="handleRowActivation($event)" [rowHeight]="'auto'">
+
+
+    </ngx-datatable>
+  </section>
+</form>
